@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>With JSON ready</title>
+  <style>
+  body {font-family: sans-serif; background: #f4f4f4 ; padding : 20px;}
+.dashboard {background: white, padding:20px; border-radius: 10px}
+  h2 {color: #333;}
+  </style>
+</head>
+
+<body>
+<div class="dashboard" id="main-content">
+  <h2>Fuel Stats</h2>
+  <div id="stats-container">Φόρτωση Δεδομένων...</div>
+</div>
+
+<script>
+fetch('data.json')
+  .then(response => {
+    if(!response.ok) throw new Error("Το αρχείο data.json δεν βρέθηκε");
+    return response.json();
+  })
+  .then(data => { 
+    const container = document.getElementById('stats-container');
+    container.innerHTML = `
+    <div class="stats-item">Τύπος: ${data.fuel_type}</div>
+    <div class="stats-item">Μέση Τιμή: ${data.average}</div>
+    <div class="stats-item">Μέγιστη Τιμή: ${data.max}</div>
+    <div class="stats-item"> Ελάχιστη Τιμή: ${data.min}</div>
+    <div class="stats-item"> Πόλη: ${data.city}</div>
+      <div class="stats-item"> Χώρα: ${data.country}</div>
+
+
+    
+    `;
+  })
+  .catch(error => {
+    document.getElementById('stats-container').innerText = "Σφάλμα: " + error.message;
+  });
+</script>
+  
+</body>
+</html>
