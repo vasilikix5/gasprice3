@@ -1,0 +1,16 @@
+{
+    "fuel_type": "Unleaded 95",
+    "all_prices": [
+        1.85,
+        1.92,
+        1.78,
+        1.95,
+        1.82
+    ],
+    "average": 1.864,
+    "max": 1.95,
+    "min": 1.78,
+    "is_expensive": true,
+    "city": "Athens",
+    "country": "Greece"
+}
